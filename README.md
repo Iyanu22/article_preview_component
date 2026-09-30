@@ -15,7 +15,7 @@ This is a solution to the [Article preview component challenge on Frontend Mento
   - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
+
 
 
 ## Overview
@@ -29,20 +29,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./design/article-preview.png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/Iyanu22/article_preview_component/actions]
+- Live Site URL: [https://iyanu22.github.io/article_preview_component/]
 
 ## My process
 
@@ -53,69 +46,42 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+This project reinforced a lot of debugging fundamentals that go beyond just writing CSS — most of my real learning came from tracking down *why* styles weren't behaving as expected:
 
-To see how you can add code snippets, see below:
+- **CSS specificity and nesting depth must match exactly between a base rule and its media query override.** Several times, a tablet/desktop override failed silently because its SCSS nesting was one level shallower than the base rule it was trying to override — e.g., skipping `.card-body` in the chain meant the compiled selector had lower specificity than the original mobile rule, so the mobile styles kept winning even though the media query was correctly active.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
+```scss
+// This looked right but had LOWER specificity than the base rule,
+// because .card-body was missing from the nesting chain:
+@media(min-width: $breakpoint-tablet){
+    .container{
+        .author-info{
+            .share-popup{ ... }
+        }
+    }
 }
 ```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+- **`max-width` on a child can never exceed a `max-width` set on its parent.** I hit this with both `main`/`.container` and the share popup's positioning — a child's width constraint is silently capped the moment any ancestor up the chain has a smaller `max-width`.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+- **Positioning context matters as much as the position values themselves.** For the share popup, `position: absolute` initially anchored to the wrong ancestor (`.container` instead of `.share-icon`), which pulled the popup toward the top of the whole card instead of directly above the button. Using `bottom: calc(100% + 1rem)` relative to the button itself, rather than a manually guessed `top` offset relative to a larger container, made the positioning far more resilient to content height changes.
+
+- **`z-index` only works between elements that both have a `position` value other than `static`.** The share button disappeared behind the popup until both elements were given an explicit `position` and layered `z-index` values.
+
+- **A missing CSS reset causes real layout bugs, not just minor spacing differences.** Default browser margins on `h1`/`h3`/`p` were responsible for unwanted gaps that looked like a flexbox/gap problem until I added a proper `* { margin: 0; padding: 0; box-sizing: border-box; }` reset at the top of the file.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- Getting faster at recognizing specificity and nesting-depth mismatches before they cost a full debugging cycle — ideally catching a shallow media query override on sight rather than after testing
+- More practice with CSS pseudo-elements (like the popup's connecting tail) for small decorative UI details
+- Building a stronger habit of checking parent elements first whenever a `max-width` or `position: absolute` isn't behaving as expected, rather than re-checking the child rule repeatedly
 
 ### AI Collaboration
 
-Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
-
-- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
-- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
-- What worked well? What didn't?
-
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
-
+I used Claude throughout this project for debugging layout and positioning issues, understanding *why* CSS specificity and nesting affected which rules won the cascade, and working through the share-popup's toggle logic and floating positioning across breakpoints.
 ## Author
+- Frontend Mentor - [@Iyanu22](https://www.frontendmentor.io/profile/Iyanu22)
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
