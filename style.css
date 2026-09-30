@@ -1,0 +1,167 @@
+*, *::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "manrope";
+  src: url("./font/Manrope/Manrope-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  font-family: "Manrope", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main {
+  max-width: 23.4375rem;
+  margin: auto;
+}
+body .container {
+  max-width: 20.4375rem;
+  border: 1px solid hsl(210, 46%, 95%);
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+body .container .card-body {
+  padding: 0 1.875rem;
+}
+body .container .card-body .author-info {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+body .container .card-body .author-info .author-description {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+body .container .card-body .author-info .avatar-img {
+  border-radius: 50%;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+body .container .card-body .author-info .share-icon {
+  background-color: hsl(210, 46%, 95%);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+body .container .card-body .author-info .share-popup {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  background-color: hsl(217, 19%, 35%);
+  padding: 1rem 1.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+body .container .card-body .author-info .share-popup p {
+  color: hsl(212, 23%, 69%);
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+}
+body .container .card-body .author-info .share-popup.active {
+  display: flex;
+}
+body .container .card-body h1, body .container .card-body h3 {
+  color: hsl(217, 19%, 35%);
+  font-weight: 700;
+}
+body .container .card-body h1 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.25px;
+}
+body .container .card-body p {
+  color: hsl(214, 17%, 51%);
+}
+body .container .card-body p, body .container .card-body h3 {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: 0.12px;
+  font-weight: 500;
+}
+@media (min-width: 48rem) {
+  body main {
+    max-width: 48rem;
+    margin: auto;
+  }
+  body .container {
+    display: flex;
+    flex-direction: row;
+    max-width: 38rem;
+    border: 1px solid hsl(210, 46%, 95%);
+    margin: auto;
+    overflow: visible;
+  }
+  body .container .drawer-image {
+    width: 100%;
+    max-width: 14.3125rem;
+    object-fit: cover;
+  }
+  body .container .card-body {
+    padding: 2rem;
+  }
+  body .container .card-body .author-info {
+    gap: 1rem;
+    position: relative;
+  }
+  body .container .card-body .author-info .share-popup {
+    position: absolute;
+    bottom: auto;
+    left: auto;
+    right: 0;
+    width: auto;
+    top: -4.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    padding: 1rem 1.5rem;
+    gap: 1.5rem;
+  }
+  body .container .card-body .author-info .share-popup::after {
+    content: "";
+    position: absolute;
+    bottom: -0.6rem;
+    right: 5rem;
+    width: 0;
+    height: 0;
+    border-left: 0.6rem solid transparent;
+    border-right: 0.6rem solid transparent;
+    border-top: 0.6rem solid hsl(217, 19%, 35%);
+  }
+}
+@media (min-width: 90rem) {
+  body main {
+    max-width: 90rem;
+    margin: auto;
+  }
+  body .container {
+    max-width: 45.625rem;
+    margin: auto;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
