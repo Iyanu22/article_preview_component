@@ -6,7 +6,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
-  <link rel="preload" href="/font/Manrope/Manrope-VariableFont_wght.ttf" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/font/Manrope/Manrope-VariableFont_wght.ttf" as="font" crossorigin>
   <script defer src="script.js"></script>
   <title>Frontend Mentor | Article preview component</title>
 
@@ -38,20 +38,20 @@
   <p>28 Jun 2020</p>
      </div>
   </div>
-  <button class="share-icon" id="share-btn">
+  <button class="share-icon" id="share-btn" aria-label="share-article" aria-expanded="false" aria-controls="share-popup">
   <img src="./images/icon-share.svg" alt="">
 </button>
-<div class="share-popup" id="share-popup">
+<div class="share-popup" id="share-popup" role="group" aria-label="share options" hidden>
 <p>Share</p>
-<a href="#"><img src="./images/icon-facebook.svg" alt=""></a>
-<a href="#"><img src="./images/icon-twitter.svg" alt=""></a>
-<a href="#"><img src="./images/icon-pinterest.svg" alt=""></a>
+<a href="#"><img src="./images/icon-facebook.svg" alt="" aria-label="facebook-link"></a>
+<a href="#"><img src="./images/icon-twitter.svg" alt=""  aria-label="twitter-link"</a>
+<a href="#"><img src="./images/icon-pinterest.svg" alt=""  aria-label="pinterest-link"></a>
 </div>
 </div>
 
   </div>
   </div>
-  </div>
+
 </main>
   
   

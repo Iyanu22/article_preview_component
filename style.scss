@@ -29,9 +29,9 @@ body {
     min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;   // horizontal centering
+  justify-content: center;  
   align-items: center;   
-
+}
   main{
      max-width: 23.4375rem;
      margin: auto;
@@ -76,8 +76,13 @@ body {
     padding: 0.5rem;
     border-radius: 50%;
     cursor: pointer;
+    transition: background-color 0.2s ease; 
     position: relative;
     z-index: 2;
+
+      &:hover {
+        background-color: $Grayish-blue;
+    }
    }
    .share-popup{
     display: none;
@@ -85,7 +90,6 @@ body {
     gap: 1rem;
     background-color: $very-dark-grayish-blue;
     padding: 1rem 1.5rem;
-    // border-radius: 10px;
     position: absolute;
     z-index: 1;
     bottom: 0;
@@ -147,9 +151,7 @@ p, h3{
     .drawer-image{
         width: 100%;
         max-width: 14.3125rem;
-        // height: 100%;
         object-fit: cover;
-        // aspect-ratio: 229 / 346;
     }
     .card-body{
         padding: 2rem;
@@ -196,4 +198,4 @@ p, h3{
         margin: auto;
     }
 }
-}
+
