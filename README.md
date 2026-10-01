@@ -34,7 +34,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/Iyanu22/article_preview_component/actions]
+- Solution URL: [https://github.com/Iyanu22/article_preview_component/]
 - Live Site URL: [https://iyanu22.github.io/article_preview_component/]
 
 ## My process
@@ -43,6 +43,7 @@ Users should be able to:
 
 - Semantic HTML5 markup
 - CSS custom properties
+- SCSS (Sass)
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
